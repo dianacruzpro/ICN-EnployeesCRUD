@@ -1,9 +1,9 @@
 $('#formLogin').submit(function (e) {
   e.preventDefault();
-  var username = $.trim($('#username').val());
-  var password = $.trim($('#password').val());
+  $username = $.trim($('#username').val());
+  $password = $.trim($('#password').val());
 
-  if (username.length == "" || password.length == "") {
+  if ($username.length == "" || $password.length == "") {
     swal.fire({
       icon: "warning",
       title: "Ingrese un usuario o contraseña."
@@ -14,7 +14,7 @@ $('#formLogin').submit(function (e) {
       url: "bd/login.php",
       type: "POST",
       datatype: "json",
-      data: { username: username, password: password },
+      data: { username: $username, password: $password },
       success: function (data) {
         if (data == "null") {
           swal.fire({
@@ -29,7 +29,7 @@ $('#formLogin').submit(function (e) {
             confirmButtonText: "Ingresar"
           }).then(result => {
             if (result.value) {
-              window.location.href = "vistas/home.php"
+              window.location.href = "./vistas/home.php"
             }
           })
         }
