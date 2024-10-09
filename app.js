@@ -1,9 +1,9 @@
 $('#formLogin').submit(function (e) {
   e.preventDefault();
-  $username = $.trim($('#username').val());
-  $password = $.trim($('#password').val());
+  const $username = $.trim($('#username').val());
+  const $password = $.trim($('#password').val());
 
-  if ($username.length == "" || $password.length == "") {
+  if ($username.length === 0 || $password.length === 0) {
     swal.fire({
       icon: "warning",
       title: "Ingrese un usuario o contraseña."
@@ -15,26 +15,23 @@ $('#formLogin').submit(function (e) {
       type: "POST",
       datatype: "json",
       data: { username: $username, password: $password },
-      success: function (data) {
-        if (data == "null") {
-          swal.fire({
-            icon: "error",
-            title: "Usuario y/o password incorrectas",
-          });
+      success: function (response) {
+        if (response.redirect) {
+          window.location.href = response.redirect; // Redirigir al cliente si hay una URL de redirección
         } else {
-          swal.fire({
-            icon: "success",
-            title: "La conexion es exitosa!",
-            confirmButtonColor: "#3885d6",
-            confirmButtonText: "Ingresar"
-          }).then(result => {
-            if (result.value) {
-              window.location.href = "./vistas/home.php"
-            }
-          })
+            // Mostrar un mensaje de error si la respuesta no es válida
+            swal.fire({
+                icon: "error",
+                title: "Error al iniciar sesión, por favor intente nuevamente."
+            });
         }
+      },
+      error: function () {
+        swal.fire({
+            icon: "error",
+            title: "Ocurrió un error en la conexión. Inténtalo de nuevo más tarde."
+        });
       }
     });
   }
-
 });

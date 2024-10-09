@@ -25,9 +25,10 @@ if(!isset($_SESSION['usuario']) || $_SESSION['usuario'] === null){
     <div class="row">
       <div class="col-lg-12">
         <div class="junbotron">
-          <h1 class="display-4 text-center">Bienvenid@</h1>
+          <h1 class="display-4 text-center">Bienvenid@ Rango 3</h1>
           <h2 class="text-center">Usuario <span class="badge badge-success"><?php echo $_SESSION['usuario']; ?></span></h2>
           <h2 class="text-center">Rango <span class="badge badge-success"><?php echo $_SESSION['s_idrango']; ?></span></h2>
+
           <p class="lead text-center">Esta es la pagina de inicio, luego de un LOGIN correcto.</p>
           <hr class="my-4">
           <a href="../bd/logout.php" class="btn btn-danger btn-lg">Cerrar sesión</a>

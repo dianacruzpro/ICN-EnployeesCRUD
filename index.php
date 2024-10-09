@@ -19,7 +19,7 @@
       <div id="login-row" class="row justify-content-center align-items-center">
         <div id="login-column" class="col-md-6">
           <div id="login-box" class="col-md-12 bg-light text-dark">
-            <form id="formLogin" class="form" action="" method="POST">
+            <form id="formLogin" class="form" action="bd/login.php" method="POST">
               <div class="form-group">
                 <label for="username" class="text-dark">Username</label>
                 <input type="text" name="username" id="username" class="form-control" placeholder="Username" >
