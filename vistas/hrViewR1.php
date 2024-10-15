@@ -77,14 +77,15 @@ try {
                             <td>{$res['departamento']}</td>
                             <td>{$res['telefono']}</td>
                             <td>
-                                <button type='button' class='btn btn-primary' onclick='verEmpleado({$res['id_empleado']})'>
-                                    <i class='bi bi-plus-circle'></i> Ver
+
+                                <button type='button' class='btn btn-link p-0' style='background: none' onclick='verEmpleado({$res['id_empleado']})'>
+                                  <img src='../res/ver.svg' alt='ver' style='width: 30px; height: 30px;'>
                                 </button>
-                                <button type='button' class='btn btn-primary' onclick='editarEmpleado({$res['id_empleado']})'>
-                                    <i class='bi bi-plus-circle'></i> Editar
+                                <button type='button' class='btn btn-link p-0' style='background: none' onclick='editarEmpleado({$res['id_empleado']})'>
+                                  <img src='../res/lapiz.svg' alt='editar' style='width: 30px; height: 30px;'>
                                 </button>
-                                <button type='button' class='btn btn-primary' onclick='confirmAction()'>
-                                    <i class='bi bi-plus-circle'></i> Eliminar
+                                <button type='button' class='btn btn-link p-0' style='background: none' onclick='confirmAction()'>
+                                <img src='../res/basurero.svg' alt='eliminar' style='width: 30px; height: 30px;'>
                                 </button>
                             </td>
                         </tr>";
