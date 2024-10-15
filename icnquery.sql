@@ -74,16 +74,16 @@ INSERT INTO rango (id_rango, id_rol) VALUES
 (3, 9);  -- Becario
 
 INSERT INTO users (user, password, id_rol) VALUES
-('diana.vasquez57376', MD5('uped2024'), 1),   -- Director General
-('mario.rubio57336', MD5('uped2024'), 2),-- Gerente
-('julissa.lopez59398', MD5('uped2024'), 3), -- Jefe de Departamento
-('nestor.santamaria59447', MD5('uped2024'), 4), -- Coordinador
-('marvin.ortiz59337', MD5('uped2024'), 5), -- Coordinador
-('josue.delao59056', MD5('uped2024'),6), --Empleado
-('kevin.rivas62325', MD5('uped2024'),7), --Asistente
-('marielos.velasco42665', MD5('uped2024'),8), --Practicante
-('daniel.hernandez59053', MD5('uped2024'),9), --Becario
-('daniela.tejada58536', MD5('uped2024'),9); --Becario
+('diana.vasquez57376', 'uped2024', 1),   -- Director General
+('mario.rubio57336', 'uped2024', 2),-- Gerente
+('julissa.lopez59398', 'uped2024', 3), -- Jefe de Departamento
+('nestor.santamaria59447', 'uped2024', 3), -- Coordinador
+('marvin.ortiz59337', 'uped2024', 5), -- Coordinador
+('josue.delao59056', 'uped2024',6), --Empleado
+('kevin.rivas62325', 'uped2024',7), --Asistente
+('marielos.velasco42665', 'uped2024',8), --Practicante
+('daniel.hernandez59053', 'uped2024',9), --Becario
+('daniela.tejada58536', 'uped2024',9); --Becario
 
 
 UPDATE users

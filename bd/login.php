@@ -8,7 +8,7 @@ $conexion = $objeto->Conectar();
 $usuario = (isset($_POST['username'])) ? $_POST['username'] : '';
 $password = (isset($_POST['password'])) ? $_POST['password'] : '';
 
-$pass = md5($password); // Encriptando la clave enviada por el usuario, para comparar con la almacenada en la BD
+//$pass = md5($password); // Encriptando la clave enviada por el usuario, para comparar con la almacenada en la BD
 
 // Consultar si el usuario existe y obtener el id_rol correspondiente
 $query = "SELECT u.user, u.password, r.id_rango, ro.nombre as rol 
@@ -21,8 +21,10 @@ $stmt = $conexion->prepare($query);
 $stmt->bindParam(':usuario', $usuario);
 $stmt->execute();
 $data = $stmt->fetch(PDO::FETCH_ASSOC);
+header('Content-Type: application/json'); // Establece el encabezado JSON
 
-if ($data && $pass == $data['password']) {
+//if ($data && $pass == $data['password']) {
+if ($data && $password == $data['password']) {
     // El usuario existe y la contraseña es correcta
     $_SESSION['usuario'] = $usuario;
     $_SESSION['s_idrango'] = $data['id_rango'];
@@ -31,22 +33,23 @@ if ($data && $pass == $data['password']) {
     // Redirigir según el rango del usuario...
     switch ($_SESSION['s_idrango']) {
         case '1':
-            echo json_encode(['redirect' => '../vistas/hrViewR1.php']);
+            echo json_encode(['redirect' => '../ICN-enployeesCRUD/vistas/hrViewR1.php']);
             exit();
         case '2':
-            echo json_encode(['redirect' => '../vistas/homeR2.php']);
+            echo json_encode(['redirect' => '../ICN-enployeesCRUD/vistas/homeR2.php']);
             exit();
         case '3':
-            echo json_encode(['redirect' => '../vistas/homeR3.php']);
+            echo json_encode(['redirect' => '../ICN-enployeesCRUD/vistas/homeR3.php']);
             exit();
         default:
-            echo json_encode(['redirect' => '../vistas/access_denied.php']);
+            echo json_encode(['redirect' => '../ICN-enployeesCRUD/vistas/access_denied.php']);
             exit();
     }
 } else {
     // Usuario no existe o contraseña incorrecta
     $_SESSION['usuario'] = null;
-    echo json_encode(['redirect' => '../index.php']);
+    //echo json_encode(['redirect' => '../ICN-enployeesCRUD/ndex.php']);
+    echo json_encode(['error' => 'Usuario o contraseña incorrectos']);
     exit();
 }
 //print json_encode($data);
