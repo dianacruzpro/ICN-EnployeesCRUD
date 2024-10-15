@@ -23,6 +23,8 @@ class Conexion
     }
   }
 }
+
+
 /*
 
 $databaeHost = 'localhost';
@@ -32,3 +34,4 @@ $databasePassword = '';
 
 
 $mysqli = mysqli_connect($databaeHost, $databaseUsername, $databasePassword, $databaseName);*/
+?>

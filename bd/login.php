@@ -31,7 +31,7 @@ if ($data && $pass == $data['password']) {
     // Redirigir según el rango del usuario...
     switch ($_SESSION['s_idrango']) {
         case '1':
-            echo json_encode(['redirect' => '../vistas/registro.php']);
+            echo json_encode(['redirect' => '../vistas/hrViewR1.php']);
             exit();
         case '2':
             echo json_encode(['redirect' => '../vistas/homeR2.php']);
@@ -48,7 +48,6 @@ if ($data && $pass == $data['password']) {
     $_SESSION['usuario'] = null;
     echo json_encode(['redirect' => '../index.php']);
     exit();
-
 }
 //print json_encode($data);
 $conexion = null;

@@ -23,7 +23,7 @@ try {
           <body>
 
             <p>
-              <a href='../vistas/add.php'>Agregar Usuario</a>
+              <a href='registro.php'>Agregar Empleado</a>
             </p>
             <table width='80%' border=0>
               <tr bgcolor='pink'>
