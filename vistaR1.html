@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabla R1</title>
+
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="pluging/sweetAlert2/sweetalert2.min.css">
+</head>
+
+<body>
+
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom container-fluid sticky-top bg-white">
+            <div class="col-md-3 mb-2 mb-md-0">
+              <a href="#" class="d-inline-flex link-body-emphasis text-decoration-none">
+                Agregar Nuevo Empleado
+              </a>
+            </div>
+      
+            <h2>Registro de empleados</h2>
+      
+            <div class="col-md-3 text-end">
+              <button type="button" class="btn btn-primary">Cerrar Sesión</button>
+            </div>
+          </header>
+
+  <div class="container">
+    
+    <table class="table table-light">
+        <thead>
+          <tr>
+            <th scope="col">N°</th>
+            <th scope="col">ID</th>
+            <th scope="col">Nombres</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Puesto</th>
+            <th scope="col">Departamento</th>
+            <th scope="col">Rendimiento</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <script>
+            function generarFilas(cantidad) {
+                const tableBody = document.getElementById('table-body');
+                for (let i = 1; i <= cantidad; i++) {
+                    const fila = `
+                        <tr>
+                            <th scope="row">${i}</th>
+                            <td>ID ${i}</td>
+                            <td>Nombre ${i}</td>
+                            <td>Apellidos ${i}</td>
+                            <td>Puesto ${i}</td>
+                            <td>Departamento ${i}</td>
+                            <td>Rendimiento ${i}</td>
+                            <td>
+                                <button type="button" class="btn btn-primary">
+                                    <i class="bi bi-plus-circle"></i> Ver
+                                </button>
+                                <button type="button" class="btn btn-primary">
+                                    <i class="bi bi-plus-circle"></i> Editar
+                                </button>
+                                <button type="button" class="btn btn-primary" onclick="confirmAction()">
+                                    <i class="bi bi-plus-circle"></i> Eliminar
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                    tableBody.insertAdjacentHTML('beforeend', fila);
+                }
+            }
+
+            // Llamar a la función para generar filas, especifica la cantidad deseada
+            generarFilas(20);
+        </script>
+        </tbody>
+      </table>
+</div>
+
+<script src="jquery/jquery-3.7.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="popper/popper.min.js"></script>
+
+<script src="pluging/sweetAlert2/sweetalert2.all.min.js"></script>
+<script src="app.js"></script>
+
+<script>
+    function confirmAction() {
+        // Mostrar cuadro de confirmación
+        const userConfirmed = confirm("¿Estás seguro de que deseas eliminar este elemento?");
+        
+        // Verificar la respuesta del usuario
+        if (userConfirmed) {
+            // Acción si el usuario hace clic en "Aceptar"
+            alert("El elemento ha sido eliminado.");
+            location.reload();
+        } else {
+            // Acción si el usuario hace clic en "Cancelar"
+            alert("La acción fue cancelada.");
+        }
+    }
+</script>
+
+</body>
+
+</html>
