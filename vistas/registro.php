@@ -1,3 +1,12 @@
+<!-- <?php 
+session_start();
+//Verificar si el user esta auenticado
+if(!isset($_SESSION['usuario']) || $_SESSION['usuario'] === null){
+  header("Location: ../index.php");
+  exit();
+}
+
+?>  -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,6 +76,7 @@
     <h1>Registro de nuevo empleado</h1>
 
     <h2>Datos personales</h2>
+    <h2>Usuario : <span class="badge badge-success"><?php echo $_SESSION['usuario']; ?></span></h2>
 
     <form>
       <div class="form-group">
@@ -177,6 +187,14 @@
 
       <button type="submit">Registrar</button>
     </form>
+    <a href="../bd/logout.php" class="btn btn-danger btn-lg">Cerrar sesión</a>
   </div>
+
+  <!-- <script src="../jquery/jquery-3.7.1.min.js"></script> -->
+  <!-- <script src="../bootstrap/js/bootstrap.min.js"></script> -->
+  <!-- <script src="../popper/popper.min.js"></script> -->
+
+  <!-- <script src="../pluging/sweetAlert2/sweetalert2.all.min.js"></script> -->
+  <!-- <script src="../app.js"></script> -->
 </body>
 </html>
