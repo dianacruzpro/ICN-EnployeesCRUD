@@ -84,7 +84,7 @@ try {
                             <td>{$res['telefono']}</td>
                             <td>
 
-                                <button type='button' class='btn btn-link p-0' style='background: none' onclick='verEmpleado({$res['id_empleado']})'>
+                                <button type='button' class='btn btn-link p-0' style='background: none' onclick='verEmpleado({$res["id_empleado"]})'>
                                   <img src='../res/ver.svg' alt='ver' style='width: 30px; height: 30px;'>
                                 </button>
                                 <button type='button' class='btn btn-link p-0' style='background: none' onclick='editarEmpleado({$res['id_empleado']})'>
@@ -108,6 +108,14 @@ try {
           <script src='../pluging/sweetAlert2/sweetalert2.all.min.js'></script>
           <script src='../app.js'></script>
 
+
+       
+<script>
+  function verEmpleado(id_empleado) {
+    // Redirige a la página con el ID del empleado
+    window.location.href = 'vista_general.php?id_empleado=' + id_empleado;
+  }
+</script>
 <script>
     function confirmAction() {
         // Mostrar cuadro de confirmación
