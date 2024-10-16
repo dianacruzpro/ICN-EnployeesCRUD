@@ -90,7 +90,7 @@ try {
                                 <button type='button' class='btn btn-link p-0' style='background: none' onclick='editarEmpleado({$res['id_empleado']})'>
                                   <img src='../res/lapiz.svg' alt='editar' style='width: 30px; height: 30px;'>
                                 </button>
-                                <button type='button' class='btn btn-link p-0' style='background: none' onclick='confirmAction()'>
+                                <button type='button' class='btn btn-link p-0' style='background: none' onclick='eliminarEmpleado({$res['id_empleado']})'>
                                 <img src='../res/basurero.svg' alt='eliminar' style='width: 30px; height: 30px;'>
                                 </button>
                             </td>
@@ -131,6 +131,27 @@ try {
             alert('La acción fue cancelada.');
         }
     }
+</script>
+
+<script>
+  function eliminarEmpleado(id_empleado) {
+    if (confirm('¿Estás seguro de que deseas eliminar este registro?')) {
+      // Hacer la solicitud AJAX para eliminar el registro
+      $.ajax({
+        url: '../bd/borrar.php',
+        type: 'POST',
+        data: { id_empleado: id_empleado },
+        success: function(response) {
+          // Mostrar mensaje de éxito o error basado en la respuesta
+          alert(response);
+          location.reload();  // Recargar la página para actualizar la lista
+        },
+        error: function() {
+          alert('Hubo un error al intentar eliminar el empleado.');
+        }
+      });
+    }
+  }
 </script>
 
         </body>
