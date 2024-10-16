@@ -5,13 +5,20 @@ if (!isset($_SESSION['usuario']) || $_SESSION['usuario'] === null) {
   header("Location: ../index.php");
   exit();
 }
+
+// Verificar si el usuario tiene el rango adecuado
+if ($_SESSION['s_idrango'] != 2) { // Cambia el número según el rango permitido para esta página
+  header("Location: ./access_denied.php");
+  exit();
+}
+
 require_once '../bd/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 
 // Consulta para obtener empleados de Rango 2
 try {
-  $query = "SELECT * FROM empleados WHERE rango = 2;";
+  $query = "SELECT * FROM empleados";
   $stmt = $conexion->prepare($query);
   $stmt->execute();
 

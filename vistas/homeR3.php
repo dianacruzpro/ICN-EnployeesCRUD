@@ -5,13 +5,19 @@ if (!isset($_SESSION['usuario']) || $_SESSION['usuario'] === null) {
   header("Location: ../index.php");
   exit();
 }
+
+// Verificar si el usuario tiene el rango adecuado
+if ($_SESSION['s_idrango'] != 3) { // Cambia el número según el rango permitido para esta página
+  header("Location: ./access_denied.php");
+  exit();
+}
 require_once '../bd/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 
 // Consulta para obtener empleados de Rango 3
 try {
-  $query = "SELECT * FROM empleados WHERE rango = 3;";
+  $query = "SELECT * FROM empleados";
   $stmt = $conexion->prepare($query);
   $stmt->execute();
 
@@ -76,9 +82,7 @@ try {
                                 <button type='button' class='btn btn-link p-0' style='background: none' onclick='verEmpleado({$res['id_empleado']})'>
                                   <img src='../res/ver.svg' alt='ver' style='width: 30px; height: 30px;'>
                                 </button>
-                                <button type='button' class='btn btn-link p-0' style='background: none' onclick='editarEmpleado({$res['id_empleado']})'>
-                                  <img src='../res/lapiz.svg' alt='editar' style='width: 30px; height: 30px;'>
-                                </button>
+                               
                             </td>
                         </tr>";
     }

@@ -5,6 +5,12 @@ if (!isset($_SESSION['usuario']) || $_SESSION['usuario'] === null) {
   header("Location: ../index.php");
   exit();
 }
+// Verificar si el usuario tiene el rango adecuado
+if ($_SESSION['s_idrango'] != 1) { // Cambia el número según el rango permitido para esta página
+  header("Location: ./access_denied.php");
+  exit();
+}
+
 require_once '../bd/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
