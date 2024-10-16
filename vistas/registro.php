@@ -25,10 +25,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $cargo = $_POST['cargo'];
   $departamento = $_POST['departamento'];
   $fecha_contratacion = $_POST['fecha_contratacion'];
-  $rango = $_POST['rango'];
   $tipo_contrato = $_POST['tipo_contrato'];
   $salario = $_POST['salario'];
   $ubicacion = $_POST['ubicacion'];
+
+  //* Validar si los campos están vacíos y mostrar alerta de error con SweetAlert2
+  if (empty($nombre) || empty($apellidos) || empty($documento_identidad) || empty($correo_electronico) || empty($cargo)) {
+    echo "<script src='../pluging/sweetAlert2/sweetalert2.all.min.js'></script>";
+    echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Faltan datos',
+                text: 'Por favor, completa todos los campos requeridos.',
+                confirmButtonText: 'Aceptar'
+            }).then(function() {
+                window.location = 'registro.php';
+            });
+        });
+      </script>";
+    exit(); // Evitar que continúe el procesamiento si hay errores
+  }
 
   try {
     // Insertar los datos en la tabla empleados
@@ -63,6 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Si la inserción fue exitosa, mostrar la alerta con SweetAlert2
     echo "<script src='../pluging/sweetAlert2/sweetalert2.all.min.js'></script>";
     echo "<script>
+      document.addEventListener('DOMContentLoaded', function() {
             Swal.fire({
                 icon: 'success',
                 title: 'Registro exitoso',
@@ -71,9 +89,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }).then(function() {
                 window.location = './hrViewR1.php';
             });
+      });
         </script>";
   } catch (PDOException $e) {
-    echo "Error al registrar el empleado: " . $e->getMessage();
+    echo "<script src='../pluging/sweetAlert2/sweetalert2.all.min.js'></script>";
+    echo "<script>
+          document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo registrar el empleado: " . $e->getMessage() . "',
+                confirmButtonText: 'Aceptar'
+            });
+  });
+          </script>";
   }
 }
 ?>
