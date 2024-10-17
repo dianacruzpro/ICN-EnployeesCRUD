@@ -124,6 +124,12 @@ INSERT INTO empleados (
 
 
 
+ALTER TABLE empleados
+ADD COLUMN porcentaje_rendimiento DECIMAL(5,2),
+ADD COLUMN horas_extra INT;
+
+UPDATE empleados
+SET porcentaje_rendimiento = 100, horas_extra = 4;
 
 
 

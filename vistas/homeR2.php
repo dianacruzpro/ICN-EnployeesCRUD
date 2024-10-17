@@ -66,6 +66,7 @@ try {
                       <th scope='col'>Puesto</th>
                       <th scope='col'>Departamento</th>
                       <th scope='col'>Telefono</th>
+                      <th scope='col'>% Rendimiento</th>
                       <th scope='col'>Acciones</th>
                     </tr>
                   </thead>
@@ -79,6 +80,7 @@ try {
                             <td>{$res['cargo']}</td>
                             <td>{$res['departamento']}</td>
                             <td>{$res['telefono']}</td>
+                            <td>{$res['porcentaje_rendimiento']}%</td>
                             <td>
                                 <button type='button' class='btn btn-link p-0' style='background: none' onclick='verEmpleado({$res['id_empleado']})'>
                                   <img src='../res/ver.svg' alt='ver' style='width: 30px; height: 30px;'>
@@ -116,29 +118,68 @@ try {
                   <input id='cargo' class='swal2-input' placeholder='Cargo'>
                   <input id='departamento' class='swal2-input' placeholder='Departamento'>
                   <input id='telefono' class='swal2-input' placeholder='Teléfono'>
+                  
+                  <div style='display: flex; align-items: center; justify-content: center;'>
+                    <button type='button' onclick='decrementarHoras()' style='margin-right: 10px;'>-</button>
+                    <input id='horas_extra' type='number' class='swal2-input' placeholder='Horas Extra' value='4' min='0' style='width: 100px; text-align: center;'>
+                    <button type='button' onclick='incrementarHoras()' style='margin-left: 10px;'>+</button>
+                  </div>
                 `,
                 confirmButtonText: 'Guardar',
                 focusConfirm: false,
                 preConfirm: () => {
-                  // Aquí iría la lógica para guardar los cambios
-                  return 'Cambios guardados para empleado ID: ' + id;
+                  // Obtener los valores ingresados
+                  const nombre = document.getElementById('nombre').value;
+                  const apellidos = document.getElementById('apellidos').value;
+                  const cargo = document.getElementById('cargo').value;
+                  const departamento = document.getElementById('departamento').value;
+                  const telefono = document.getElementById('telefono').value;
+                  const horasExtra = document.getElementById('horas_extra').value;
+
+                  // Aquí iría la lógica para guardar los cambios, por ejemplo, enviar una solicitud al servidor
+                  // Puedes hacer una validación previa si es necesario
+
+                  return {
+                    id,
+                    nombre,
+                    apellidos,
+                    cargo,
+                    departamento,
+                    telefono,
+                    horasExtra
+                  };
                 }
               }).then((result) => {
                 if (result.value) {
-                  Swal.fire('Guardado!', result.value, 'success');
+                  // Aquí iría la lógica para actualizar los datos en la base de datos o hacer otras acciones
+                  Swal.fire('Guardado!', `Cambios guardados para empleado ID: {$res['id_empleado']}`, 'success');
                 }
               });
             }
+
+            // Función para incrementar horas extra
+            function incrementarHoras() {
+              let horasInput = document.getElementById('horas_extra');
+              let horas = parseInt(horasInput.value);
+              horasInput.value = horas + 1;
+            }
+
+            // Función para decrementar horas extra
+            function decrementarHoras() {
+              let horasInput = document.getElementById('horas_extra');
+              let horas = parseInt(horasInput.value);
+              if (horas > 0) {
+                horasInput.value = horas - 1;
+              }
+            }
+
           </script>
         </body>
         </html>
       ";
-
   } else {
     echo "No hay empleados de Rango 2 disponibles";
   }
-
-
 } catch (PDOException $e) {
   die("Error al ejecutar la consulta:" . $e->getMessage());
 }
