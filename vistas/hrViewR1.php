@@ -84,13 +84,13 @@ try {
                             <td>{$res['telefono']}</td>
                             <td>
 
-                                <button type='button' class='btn btn-link p-0' style='background: none' onclick='verEmpleado({$res['id_empleado']})'>
+                                <button type='button' class='btn btn-link p-0' style='background: none' onclick='verEmpleado({$res["id_empleado"]})'>
                                   <img src='../res/ver.svg' alt='ver' style='width: 30px; height: 30px;'>
                                 </button>
                                 <button type='button' class='btn btn-link p-0' style='background: none' onclick='editarEmpleado({$res['id_empleado']})'>
                                   <img src='../res/lapiz.svg' alt='editar' style='width: 30px; height: 30px;'>
                                 </button>
-                                <button type='button' class='btn btn-link p-0' style='background: none' onclick='confirmAction()'>
+                                <button type='button' class='btn btn-link p-0' style='background: none' onclick='eliminarEmpleado({$res['id_empleado']})'>
                                 <img src='../res/basurero.svg' alt='eliminar' style='width: 30px; height: 30px;'>
                                 </button>
                             </td>
@@ -108,6 +108,14 @@ try {
           <script src='../pluging/sweetAlert2/sweetalert2.all.min.js'></script>
           <script src='../app.js'></script>
 
+
+       
+<script>
+  function verEmpleado(id_empleado) {
+    // Redirige a la página con el ID del empleado
+    window.location.href = 'vista_general.php?id_empleado=' + id_empleado;
+  }
+</script>
 <script>
     function confirmAction() {
         // Mostrar cuadro de confirmación
@@ -123,6 +131,27 @@ try {
             alert('La acción fue cancelada.');
         }
     }
+</script>
+
+<script>
+  function eliminarEmpleado(id_empleado) {
+    if (confirm('¿Estás seguro de que deseas eliminar este registro?')) {
+      // Hacer la solicitud AJAX para eliminar el registro
+      $.ajax({
+        url: '../bd/borrar.php',
+        type: 'POST',
+        data: { id_empleado: id_empleado },
+        success: function(response) {
+          // Mostrar mensaje de éxito o error basado en la respuesta
+          alert(response);
+          location.reload();  // Recargar la página para actualizar la lista
+        },
+        error: function() {
+          alert('Hubo un error al intentar eliminar el empleado.');
+        }
+      });
+    }
+  }
 </script>
 
         </body>
