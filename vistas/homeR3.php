@@ -42,9 +42,7 @@ try {
 
                   <header class='d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom container-fluid sticky-top bg-white'>
                       <div class='col-md-3 mb-2 mb-md-0'>
-                        <a href='#' class='d-inline-flex link-body-emphasis text-decoration-none'>
-                          Empleados Rango 3
-                        </a>
+                        
                       </div>
                 
                       <h2>Visualización y Edición</h2>
@@ -98,9 +96,9 @@ try {
           <script src='../app.js'></script>
 
           <script>
-            function verEmpleado(id) {
-              // Implementar lógica para ver detalles del empleado
-              Swal.fire('Ver Empleado', 'Detalles del empleado con ID: ' + id, 'info');
+            function verEmpleado(id_empleado) {
+              // Redirige a la página con el ID del empleado
+              window.location.href = 'vista_general.php?id_empleado=' + id_empleado;
             }
 
             function editarEmpleado(id) {

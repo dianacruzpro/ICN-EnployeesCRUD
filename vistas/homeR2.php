@@ -103,9 +103,9 @@ try {
           <script src='../app.js'></script>
 
           <script>
-            function verEmpleado(id) {
-              // Implementar lógica para ver detalles del empleado
-              Swal.fire('Ver Empleado', 'Detalles del empleado con ID: ' + id, 'info');
+            function verEmpleado(id_empleado) {
+              // Redirige a la página con el ID del empleado
+              window.location.href = 'vista_general.php?id_empleado=' + id_empleado;
             }
 
             function editarEmpleado(id) {

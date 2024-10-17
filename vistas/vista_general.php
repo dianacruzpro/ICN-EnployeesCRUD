@@ -7,11 +7,6 @@ if (!isset($_SESSION['usuario']) || $_SESSION['usuario'] === null) {
   exit();
 }
 
-// Verificar si el usuario tiene el rango adecuado
-if ($_SESSION['s_idrango'] != 1) { // Cambia el número según el rango permitido para esta página
-  header("Location: ./access_denied.php");
-  exit();
-}
 
 // Conexión a la base de datos
 require_once '../bd/conexion.php';
