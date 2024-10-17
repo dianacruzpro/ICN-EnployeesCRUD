@@ -68,6 +68,7 @@ try {
                       <th scope='col'>Puesto</th>
                       <th scope='col'>Departamento</th>
                       <th scope='col'>Telefono</th>
+                      <th scope='col'>% Rendimiento</th>
                       <th scope='col'>Acciones</th>
                     </tr>
                   </thead>
@@ -82,6 +83,7 @@ try {
                             <td>{$res['cargo']}</td>
                             <td>{$res['departamento']}</td>
                             <td>{$res['telefono']}</td>
+                            <td>{$res['porcentaje_rendimiento']}%</td>
                             <td>
 
                                 <button type='button' class='btn btn-link p-0' style='background: none' onclick='verEmpleado({$res["id_empleado"]})'>
@@ -157,12 +159,9 @@ try {
         </body>
         </html>
       ";
-
   } else {
     echo "No hay usuarios disponibles";
   }
-
-
 } catch (PDOException $e) {
   die("Error al ejecutar la consulta:" . $e->getMessage());
 }
