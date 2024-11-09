@@ -96,6 +96,25 @@ SET id_rol = 5  WHERE id = 5;
 UPDATE `users` SET `id_rol` = '3' WHERE `users`.`id` = 4; --Cambiando de rol a Nestor con rango 1
 UPDATE `users` SET `id_rol` = '4' WHERE `users`.`id` = 22; --Cambiando de rol a Kevin con rango 2
 
+/*==================en HeidiSQL==========================*/
+
+
+UPDATE users
+SET id_rol = CASE
+	when id_rol = 1  then id = 1
+	when id_rol = 2  then id = 2
+	when id_rol = 3  then id = 3
+	when id_rol = 4  then id = 4
+	when id_rol = 5  then id = 5
+END WHERE id_rol IN(1,2,3,4,5);
+
+UPDATE users SET id_rol = '1' WHERE users.id = 4; -- Cambiando de rol a Nestor con rango 1
+UPDATE users SET id_rol = '4' WHERE users.id = 7; 
+
+
+/*==================fin HeidiSQL==========================*/
+
+
 INSERT INTO empleados (
     nombre, apellidos, fecha_nacimiento, genero, documento_identidad, 
     estado_civil, nacionalidad, direccion, telefono, correo_electronico, 

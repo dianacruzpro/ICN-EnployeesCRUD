@@ -4,7 +4,7 @@ class Conexion
 {
   public static function Conectar()
   {
-    $databaseHost = 'localhost:3310';
+    $databaseHost = 'localhost:3306';
     $databaseName = 'icnproyect';
     $databaseUsername = 'root';
     $databasePassword = '';
@@ -34,4 +34,3 @@ $databasePassword = '';
 
 
 $mysqli = mysqli_connect($databaeHost, $databaseUsername, $databasePassword, $databaseName);*/
-?>
